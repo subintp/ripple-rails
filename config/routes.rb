@@ -3,4 +3,20 @@ Rails.application.routes.draw do
 
   # Serve websocket cable requests in-process
   # mount ActionCable.server => '/cable'
+
+  namespace :api do
+    namespace :v1 do
+
+      get 'login', to: 'authentication#facebook'
+
+      resources :users do
+        collection do
+          get :hello
+        end
+
+
+      end
+    end
+  end
+
 end

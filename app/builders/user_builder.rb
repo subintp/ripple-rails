@@ -1,5 +1,9 @@
 class UserBuilder
 
+  def self.perform fb_token
+    self.new(fb_token).perform
+  end
+
   def initialize fb_token
     @fb_token = fb_token
   end
