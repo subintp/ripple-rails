@@ -14,6 +14,7 @@ module Ripple
     config.autoload_paths.push(*%W(#{config.root}/lib
                                    #{config.root}/app/services
                                    #{config.root}/app/builders
+                                   #{config.root}/app/decorators
                                    ))
   end
 end

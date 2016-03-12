@@ -4,7 +4,7 @@ class Api::V1::AuthenticationController < ApplicationController
     begin
       @user = UserBuilder.perform(params[:auth_token])
     rescue  => e
-      Rails.logger.info "USER-CREATION_FAILED - #{e.message}"
+      Rails.logger.info "USER-CREATION-FAILED - #{e.message}"
       head :internal_server_error
     end
   end

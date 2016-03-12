@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   respond_to :json
 
   helper_method :current_user
-  before_filter :authenticate!
+  before_action :authenticate!
 
 
   def current_user
