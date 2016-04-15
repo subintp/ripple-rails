@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users do
         collection do
-          get :login
+          post :login
         end
       end
     end
