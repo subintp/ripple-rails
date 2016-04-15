@@ -1,4 +1,8 @@
 class Language < ApplicationRecord
-  has_many :movies
+
   validates :name, presence: true
+
+  has_many :movies
+  has_many :reviews, through: :movies
+
 end

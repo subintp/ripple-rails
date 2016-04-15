@@ -42,8 +42,6 @@ gem 'public_activity'
 gem 'kaminari'
 gem 'acts-as-taggable-on'
 gem 'sinatra', require: false
-gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
-gem 'draper', '~> 1.3'
 
 group :development, :test do
   gem 'byebug'
