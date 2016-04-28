@@ -2,6 +2,9 @@ class User < ApplicationRecord
 
   before_create :generate_auth_key
 
+  scope :top_users, -> { order('reviews_count DESC').limit(20) }
+
+
   private
 
   def generate_auth_key

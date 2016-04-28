@@ -12,7 +12,8 @@ class LanguageDecorator < BaseDecorator
     @object.movies.latest.page(page)
    end
 
-   def top_users
+   def top_users(page=1)
+    User.top_users.page(page)
    end
 
 end

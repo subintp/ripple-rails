@@ -6,11 +6,22 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+
       resources :users do
         collection do
           post :login
         end
       end
+
+      resources :languages do
+        collection do
+          get :discover
+          get :top_movies
+          get :new_movies
+          get :top_users
+        end
+      end
+
     end
   end
 

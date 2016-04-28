@@ -6,7 +6,10 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
   before_action :authenticate!
+  around_action :wrap_in_rescue
 
+
+  private
 
   def current_user
     return @current_user if @current_user
@@ -22,4 +25,13 @@ class ApplicationController < ActionController::Base
   def render_unauthorized
     head :unauthorized
   end
+
+  def wrap_in_rescue
+    begin
+      yield
+    rescue  => e
+      head :internal_server_error
+    end
+  end
+
 end
