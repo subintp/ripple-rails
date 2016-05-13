@@ -29,6 +29,13 @@ Rails.application.routes.draw do
         end
       end
 
+      resources :reviews do
+        member do
+          post :like
+          post :unlike
+        end
+      end
+
 
 
     end

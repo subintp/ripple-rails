@@ -33,18 +33,16 @@ class Api::V1::MoviesController < ApplicationController
     @language = Language.find(params[:language_id])
   end
 
-    def fetch_movie
-      @movie = Movie.includes(:reviews).find(params[:id])
-    end
+  def fetch_movie
+    @movie = Movie.includes(:reviews).find(params[:id])
+  end
 
-    def movie_params
-      params.require(:movie)
-            .permit(:name, :release_date, :director,
-                    :cast_list, :image_url, :description,
-                    :genre_list, :length, :trailer_id,
-                    :source_id, :rotten_rating, :imdb_rating)
-            .merge(language_id: @language.id)
-    end
-
-
+  def movie_params
+    params.require(:movie)
+          .permit(:name, :release_date, :director,
+                  :cast_list, :image_url, :description,
+                  :genre_list, :length, :trailer_id,
+                  :source_id, :rotten_rating, :imdb_rating)
+          .merge(language_id: @language.id)
+  end
 end
