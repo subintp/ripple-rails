@@ -1,5 +1,10 @@
 class User < ApplicationRecord
 
+  acts_as_follower
+  acts_as_followable
+  acts_as_liker
+  acts_as_mentionable
+
   before_create :generate_auth_key
 
   scope :top_users, -> { order('reviews_count DESC').limit(20) }

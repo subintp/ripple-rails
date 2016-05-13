@@ -8,8 +8,6 @@ class Movie < ApplicationRecord
 
 
   validates :name, presence: true
-  validates :source_id, presence: true, allow_blank: false
-  validates_uniqueness_of :source_id
 
   acts_as_followable
   acts_as_mentionable

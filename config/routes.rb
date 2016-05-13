@@ -22,6 +22,15 @@ Rails.application.routes.draw do
         end
       end
 
+      resources :movies do
+        member do
+          post :follow
+          post :unfollow
+        end
+      end
+
+
+
     end
   end
 
