@@ -37,6 +37,13 @@ Rails.application.routes.draw do
       end
 
       resources :comments
+
+      resources :search do
+        collection do
+          get :movies
+          get :users
+        end
+      end
     end
   end
 

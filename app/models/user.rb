@@ -8,7 +8,7 @@ class User < ApplicationRecord
   before_create :generate_auth_key
 
   scope :top_users, -> { order('reviews_count DESC').limit(20) }
-
+  scope :search,-> (name) { where("name like ?", "#{name}%").limit(20) }
 
   private
 
