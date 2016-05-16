@@ -11,4 +11,7 @@ class Review < ApplicationRecord
   validates :rating, presence: true
   validates :content, presence: true
 
+  include PublicActivity::Model
+  tracked
+
 end

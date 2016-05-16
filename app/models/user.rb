@@ -10,6 +10,14 @@ class User < ApplicationRecord
   scope :top_users, -> { order('reviews_count DESC').limit(20) }
   scope :search,-> (name) { where("name like ?", "#{name}%").limit(20) }
 
+  def self.current_user
+    Thread.current[:current_user]
+  end
+
+  def self.current_user=(user)
+    Thread.current[:current_user] = user
+  end
+
   private
 
   def generate_auth_key

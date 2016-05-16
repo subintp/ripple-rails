@@ -27,11 +27,16 @@ class ApplicationController < ActionController::Base
   end
 
   def wrap_in_rescue
+    set_current_user
     begin
       yield
     rescue  => e
       head :internal_server_error
     end
+  end
+
+  def set_current_user
+    User.current_user = current_user
   end
 
 end
