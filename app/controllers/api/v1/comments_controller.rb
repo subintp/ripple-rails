@@ -27,6 +27,7 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def create_comment
+    #TODO - Move this to comment builder
     @comment = @review.comments.build
     @comment.content = params[:content]
     @comment.review_id = @review.id

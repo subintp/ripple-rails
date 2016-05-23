@@ -31,6 +31,7 @@ class ApplicationController < ActionController::Base
     begin
       yield
     rescue  => e
+      # TODO - send error to new relic
       head :internal_server_error
     end
   end
