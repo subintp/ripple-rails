@@ -1,7 +1,7 @@
 class Api::V1::MoviesController < ApplicationController
 
   before_action :fetch_language, only: [:index, :create]
-  before_action :fetch_movie, except: [:create, :index]
+  before_action :fetch_movie, except: [:create, :index, :watched_movies]
 
   def create
     @movie = @language.movies.new(movie_params)
@@ -26,6 +26,19 @@ class Api::V1::MoviesController < ApplicationController
     head :ok
   end
 
+  def watch
+    @current_user.watch(@movie)
+    head :ok
+  end
+
+  def unwatch
+    @current_user.unwatch(@movie)
+    head :ok
+  end
+
+  def watched_movies
+    @movies = @current_user.watched_movies
+  end
 
   private
 

@@ -26,6 +26,11 @@ Rails.application.routes.draw do
         member do
           post :follow
           post :unfollow
+          post :watch
+          post :unwatch
+        end
+        collection do
+          get :watched_movies
         end
       end
 
