@@ -9,8 +9,4 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
-  def hello
-    head :ok
-  end
-
 end
