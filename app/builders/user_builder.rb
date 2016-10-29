@@ -34,7 +34,6 @@ class UserBuilder
     set_facebook_id
     set_avathar
     set_fb_auth_token
-    set_auth_token
   end
 
   def set_name
@@ -55,9 +54,5 @@ class UserBuilder
 
   def set_fb_auth_token
     @user.fb_auth_token = @fb_token
-  end
-
-  def set_auth_token
-    
   end
 end
