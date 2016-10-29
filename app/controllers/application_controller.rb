@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   respond_to :json
 
   helper_method :current_user
-  before_action :authenticate!
+  before_action :authenticate!, except: [:login]
   around_action :wrap_in_rescue
 
 
