@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -27,11 +26,10 @@ ActiveRecord::Schema.define(version: 20160516193033) do
     t.integer  "recipient_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
+    t.index ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
+    t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
   end
-
-  add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
-  add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
-  add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -55,10 +53,9 @@ ActiveRecord::Schema.define(version: 20160516193033) do
     t.string   "followable_type"
     t.integer  "followable_id"
     t.datetime "created_at"
+    t.index ["followable_id", "followable_type"], name: "fk_followables", using: :btree
+    t.index ["follower_id", "follower_type"], name: "fk_follows", using: :btree
   end
-
-  add_index "follows", ["followable_id", "followable_type"], name: "fk_followables", using: :btree
-  add_index "follows", ["follower_id", "follower_type"], name: "fk_follows", using: :btree
 
   create_table "languages", force: :cascade do |t|
     t.string   "name"
@@ -72,10 +69,9 @@ ActiveRecord::Schema.define(version: 20160516193033) do
     t.string   "likeable_type"
     t.integer  "likeable_id"
     t.datetime "created_at"
+    t.index ["likeable_id", "likeable_type"], name: "fk_likeables", using: :btree
+    t.index ["liker_id", "liker_type"], name: "fk_likes", using: :btree
   end
-
-  add_index "likes", ["likeable_id", "likeable_type"], name: "fk_likeables", using: :btree
-  add_index "likes", ["liker_id", "liker_type"], name: "fk_likes", using: :btree
 
   create_table "mentions", force: :cascade do |t|
     t.string   "mentioner_type"
@@ -83,10 +79,9 @@ ActiveRecord::Schema.define(version: 20160516193033) do
     t.string   "mentionable_type"
     t.integer  "mentionable_id"
     t.datetime "created_at"
+    t.index ["mentionable_id", "mentionable_type"], name: "fk_mentionables", using: :btree
+    t.index ["mentioner_id", "mentioner_type"], name: "fk_mentions", using: :btree
   end
-
-  add_index "mentions", ["mentionable_id", "mentionable_type"], name: "fk_mentionables", using: :btree
-  add_index "mentions", ["mentioner_id", "mentioner_type"], name: "fk_mentions", using: :btree
 
   create_table "movies", force: :cascade do |t|
     t.string   "name"
@@ -141,9 +136,8 @@ ActiveRecord::Schema.define(version: 20160516193033) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "app_id"
+    t.index ["device_token"], name: "index_rpush_feedback_on_device_token", using: :btree
   end
-
-  add_index "rpush_feedback", ["device_token"], name: "index_rpush_feedback_on_device_token", using: :btree
 
   create_table "rpush_notifications", force: :cascade do |t|
     t.integer  "badge"
@@ -176,9 +170,8 @@ ActiveRecord::Schema.define(version: 20160516193033) do
     t.string   "category"
     t.boolean  "content_available",            default: false
     t.text     "notification"
+    t.index ["delivered", "failed"], name: "index_rpush_notifications_multi", where: "((NOT delivered) AND (NOT failed))", using: :btree
   end
-
-  add_index "rpush_notifications", ["delivered", "failed"], name: "index_rpush_notifications_multi", where: "((NOT delivered) AND (NOT failed))", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -189,9 +182,9 @@ ActiveRecord::Schema.define(version: 20160516193033) do
     t.string   "description"
     t.string   "fb_auth_token"
     t.string   "auth_key"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "reviews_count"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "reviews_count", default: 0
   end
 
   create_table "watch_lists", force: :cascade do |t|
