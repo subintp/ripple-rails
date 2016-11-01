@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       end
 
       resources :languages do
-        collection do
+        member do
           get :discover
           get :top_movies
           get :new_movies

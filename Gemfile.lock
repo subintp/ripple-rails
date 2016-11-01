@@ -69,6 +69,7 @@ GEM
     capistrano3-puma (1.2.1)
       capistrano (~> 3.0)
       puma (>= 2.6)
+    coderay (1.1.1)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -126,14 +127,16 @@ GEM
       mini_portile2 (~> 2.1.0)
     oj (2.17.5)
     pg (0.19.0)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
     public_activity (1.5.0)
       actionpack (>= 3.0.0)
       activerecord (>= 3.0)
       i18n (>= 0.5.0)
       railties (>= 3.0.0)
     puma (3.6.0)
-    rabl (0.13.1)
-      activesupport (>= 2.3.14)
     rack (2.0.1)
     rack-protection (1.5.3)
       rack
@@ -190,6 +193,7 @@ GEM
       redis (~> 3.2, >= 3.2.1)
     sinatra (1.0)
       rack (>= 1.0)
+    slop (3.6.0)
     socialization (1.2.0)
       activerecord
     spring (2.0.0)
@@ -246,9 +250,9 @@ DEPENDENCIES
   listen (~> 3.0.5)
   oj
   pg (~> 0.18)
+  pry
   public_activity
   puma
-  rabl
   rails (>= 5.0.0.1, < 5.1)
   redis (~> 3.0)
   responders

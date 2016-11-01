@@ -34,10 +34,11 @@ gem 'redis', '~> 3.0'
 gem "koala"
 gem "socialization"
 gem 'responders'
-gem 'rabl'
+
 gem 'oj'
 gem 'sidekiq'
 gem 'rpush'
+gem 'pry'
 gem 'public_activity'
 gem 'kaminari'
 gem 'acts-as-taggable-on'

@@ -5,7 +5,7 @@ class Api::V1::LanguagesController < ApplicationController
 
 
   def index
-    @languages = Language.all.page(params[:page]).per_page(5)
+    @languages = Language.all.page(params[:page]).per(5)
   end
 
   def discover
