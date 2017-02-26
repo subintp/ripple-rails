@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: ripple_production
-  username: deployer
+  username: ubuntu
   password: <%= ENV['RIPPLE_DATABASE_PASSWORD'] %>
