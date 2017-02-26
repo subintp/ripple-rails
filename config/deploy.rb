@@ -1,7 +1,7 @@
 # Change these
 server 'ec2-52-27-201-103.us-west-2.compute.amazonaws.com', roles: [:web, :app, :db], primary: true
 
-set :repo_url,        'https://gitlab.com/subintp1/ripple-rails.git'
+set :repo_url,        'git@gitlab.com:subintp1/ripple-rails.git'
 set :application,     'ripple'
 set :user,            'ubuntu'
 set :puma_threads,    [4, 16]
