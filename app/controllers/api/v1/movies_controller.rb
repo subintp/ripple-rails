@@ -15,7 +15,6 @@ class Api::V1::MoviesController < ApplicationController
   def show
   end
 
-
   def follow
     @current_user.follow!(@movie)
     head :ok

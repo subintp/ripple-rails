@@ -22,13 +22,7 @@ class Api::V1::ReviewsController < ApplicationController
   end
 
   def like
-    @current_user.like!(@review)
-    head :ok
-  end
-
-  def unlike
-    @current_user.unlike!(@review)
-    head :ok
+    @current_user.toggle_like!(@review)
   end
 
   def destroy

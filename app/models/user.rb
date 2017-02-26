@@ -5,7 +5,15 @@ class User < ApplicationRecord
   acts_as_liker
   acts_as_mentionable
 
-  has_many :watch_lists
+  has_many :watch_lists, dependent: :destroy
+  has_many :watched_lists, dependent: :destroy
+  has_many :reviews, dependent: :destroy
+  has_many :comments, dependent: :destroy
+
+  acts_as_follower
+  acts_as_followable
+  acts_as_liker
+  acts_as_mentionable
 
   before_create :generate_auth_key
 
@@ -20,20 +28,43 @@ class User < ApplicationRecord
     Thread.current[:current_user] = user
   end
 
-  def watch movie
-    watch_list = watch_lists.new
-    watch_list.movie_id = movie.id
-    watch_list.save
+  def followees_reviews(review_id,order)
+    reviews = Review.where(user_id: self.followees(User).map(&:id))
+    results = {}
+    if order == :latest
+      if review_id
+        results = reviews.where('id > ?',review_id).order('id DESC').limit(10)
+      else
+        results = reviews.order('id DESC').limit(15)
+      end
+    else order == :oldest
+      if review_id
+        results = reviews.where('id < ?',review_id).order('id DESC').limit(10)
+      else
+        results = reviews.limit(15)
+      end
+    end
+    results
   end
 
-  def unwatch movie
-    watch_list = watch_lists.where(movie_id: movie.id).first
-    watch_list.destroy
-  end
-
-  def watched_movies
-    watched_movies_id = watch_lists.pluck(:movie_id).uniq
-    Movie.where(id: watched_movies_id)
+  def user_reviews(review_id,order)
+    #reviews = Review.where(id: self.id)
+    reviews = self.reviews
+    results = {}
+    if order == :latest
+      if review_id
+        results = reviews.where('id > ?',review_id).order('id DESC').limit(10)
+      else
+        results = reviews.order('id DESC').limit(10)
+      end
+    else order == :oldest
+      if review_id
+        results = reviews.where('id < ?',review_id).order('id DESC').limit(10)
+      else
+        results = reviews.limit(10)
+      end
+    end
+    results
   end
 
   private

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :users do
         collection do
           post :login
+          get  :feed
         end
       end
 
@@ -32,12 +33,16 @@ Rails.application.routes.draw do
         collection do
           get :watched_movies
         end
+        resources :watch_list, only: [] do
+          post 'add', on: :collection
+          post 'remove', on: :collection
+        end
       end
 
       resources :reviews do
         member do
-          post :like
-          post :unlike
+          patch :like
+          patch :unlike
         end
       end
 
